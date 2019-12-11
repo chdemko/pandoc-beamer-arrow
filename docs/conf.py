@@ -25,21 +25,21 @@ on_rtd = os.environ.get("READTHEDOCS", None) == "True"
 
 # -- Project information -----------------------------------------------------
 
-project = "pandoc-latex-admonition"
-copyright = "2017-2019, Christophe Demko"
+project = "pandoc-beamer-arrow"
+copyright = "2019, Christophe Demko"
 author = "Christophe Demko"
 
 # The short X.Y version
-version = "1.3"
+version = "0.1"
 # The full version, including alpha/beta/rc tags
-release = "1.3.1"
+release = "0.1.0"
 
 # -- General configuration ---------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
 #
 # needs_sphinx = '1.0'
-needs_sphinx = "1.8"
+needs_sphinx = "2.2"
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
