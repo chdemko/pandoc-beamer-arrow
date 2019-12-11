@@ -9,5 +9,6 @@ pharetra lacinia. Vivamus consectetur ut mauris quis posuere. Pellentesque eget 
 nibh ullamcorper ullamcorper eget eu velit.
 [**def**]{.beamer-arrow-node #id2 color="pink" from="2"} Pellentesque eget ipsum et nibh
 ullamcorper ullamcorper eget eu velit.
+[**ghi**]{.beamer-arrow-node from="2"}
 
 []{.beamer-arrow-edge src="id1" dest="id2" angle_src="90" color="pink" linewidth="3" from="2"}
