@@ -25,7 +25,7 @@ except (IOError, ImportError):
 
 
 setup(
-    name="pandoc-pandoc-beamer-arrow",
+    name="pandoc-beamer-arrow",
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # https://packaging.python.org/en/latest/single_source_version.html
@@ -34,9 +34,9 @@ setup(
     description="A pandoc filter for adding arrows in Beamer/LaTeX",
     long_description=LONG_DESCRIPTION,
     # The project's main homepage.
-    url="https://github.com/chdemko/pandoc-pandoc-beamer-arrow",
+    url="https://github.com/chdemko/pandoc-beamer-arrow",
     # The project's download page
-    download_url="https://github.com/chdemko/pandoc-pandoc-beamer-arrow/archive/develop.zip",
+    download_url="https://github.com/chdemko/pandoc-beamer-arrow/archive/develop.zip",
     # Author details
     author="Christophe Demko",
     author_email="chdemko@gmail.com",
@@ -72,7 +72,7 @@ setup(
     # "scripts" keyword. Entry points provide cross-platform support and allow
     # pip to create the appropriate form of executable for the target platform.
     entry_points={
-        "console_scripts": ["pandoc-pandoc-beamer-arrow = pandoc_beamer_arrow:main"]
+        "console_scripts": ["pandoc-beamer-arrow = pandoc_beamer_arrow:main"]
     },
     # List run-time dependencies here.  These will be installed by pip when
     # your project is installed. For an analysis of "install_requires" vs pip's
