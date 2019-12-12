@@ -225,7 +225,7 @@ def tikz(elem, doc):
                 try:
                     angle = elem.attributes["angle_src"]
                     angle = int(angle)
-                    angles.append(f"in={angle}")
+                    angles.append(f"out={angle}")
                 except ValueError:
                     debug(f"pandoc-beamer-arrow: angle_src '{angle}' is not correct")
 
@@ -233,7 +233,7 @@ def tikz(elem, doc):
                 try:
                     angle = elem.attributes["angle_dest"]
                     angle = int(angle)
-                    angles.append(f"out={angle}")
+                    angles.append(f"in={angle}")
                 except ValueError:
                     debug(f"pandoc-beamer-arrow: angle_dest '{angle}' is not correct")
 
