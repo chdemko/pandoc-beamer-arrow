@@ -181,7 +181,7 @@ class ArrowTest(TestCase):
         self.assertEqual(
             text,
             r"\begin{tikzpicture}"
-            r"[overlay]\path[->] (id1) edge [in=90] (id2);"
+            r"[overlay]\path[->] (id1) edge [out=90] (id2);"
             r"\end{tikzpicture}",
         )
 
@@ -223,7 +223,7 @@ class ArrowTest(TestCase):
         self.assertEqual(
             text,
             r"\begin{tikzpicture}"
-            r"[overlay]\path[->] (id1) edge [out=90] (id2);"
+            r"[overlay]\path[->] (id1) edge [in=90] (id2);"
             r"\end{tikzpicture}",
         )
 
