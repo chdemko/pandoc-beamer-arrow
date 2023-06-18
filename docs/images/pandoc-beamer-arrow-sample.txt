@@ -1,14 +1,30 @@
 [**abc**]{.beamer-arrow-node #id1}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer auctor blandit felis ut
-elementum. Donec accumsan ex at orci volutpat iaculis. Proin in risus metus. Nunc sit amet
-auctor nunc, quis consectetur turpis. Maecenas gravida blandit odio vitae dignissim. In
-maximus purus quis enim molestie iaculis. Quisque ut urna nec justo dictum accumsan ut
-quis odio. Sed nulla erat, posuere at sapien tempus, venenatis vulputate mi. Nam pretium
-sem id enim condimentum, vel porttitor dolor viverra. Sed commodo est sit amet nisi
-pharetra lacinia. Vivamus consectetur ut mauris quis posuere. Pellentesque eget ipsum et
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Integer auctor blandit felis ut
+elementum. Donec accumsan ex at orci volutpat iaculis. Proin in risus metus.
+Nunc sit amet
+auctor nunc, quis consectetur turpis.
+Maecenas gravida blandit odio vitae dignissim. In
+maximus purus quis enim molestie iaculis.
+Quisque ut urna nec justo dictum accumsan ut
+quis odio. Sed nulla erat, posuere at sapien tempus, venenatis vulputate mi.
+Nam pretium
+sem id enim condimentum, vel porttitor dolor viverra.
+Sed commodo est sit amet nisi
+pharetra lacinia. Vivamus consectetur ut mauris quis posuere.
+Pellentesque eget ipsum et
 nibh ullamcorper ullamcorper eget eu velit.
-[**def**]{.beamer-arrow-node #id2 color="pink" from="2"} Pellentesque eget ipsum et nibh
+[**def**]{.beamer-arrow-node #id2 color="pink" from="2"}
+Pellentesque eget ipsum et nibh
 ullamcorper ullamcorper eget eu velit.
 [**ghi**]{.beamer-arrow-node from="2"}
 
-[]{.beamer-arrow-edge src="id1" dest="id2" angle_src="90" color="pink" linewidth="3" from="2"}
+[]{
+    .beamer-arrow-edge
+    src="id1"
+    dest="id2"
+    angle_src="90"
+    color="pink"
+    linewidth="3"
+    from="2"
+}
