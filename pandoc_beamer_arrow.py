@@ -1,22 +1,23 @@
 #!/usr/bin/env python
 
-"""
-Pandoc filter for adding admonition in LaTeX
-"""
-from panflute import (
-    run_filter,
-    RawInline,
-    MetaList,
+"""Pandoc filter for adding admonition in LaTeX."""
+
+import contextlib
+
+from panflute import (  # type: ignore
     MetaInlines,
-    convert_text,
+    MetaList,
     Plain,
+    RawInline,
+    convert_text,
     debug,
+    run_filter,
 )
 
 
-def x11colors():
+def x11colors():  # noqa: CFQ001
     """
-    Get the x11 colors
+    Get the x11 colors.
 
     Returns
     -------
@@ -177,21 +178,21 @@ def x11colors():
 # pylint: disable=inconsistent-return-statements,too-many-branches,too-many-statements
 def tikz(elem, doc):
     """
-    Add admonition to elem
+    Add admonition to elem.
 
     Arguments
     ---------
-        elem:
-            The current element
-        doc:
-            The pandoc document
+    elem
+        The current element
+    doc
+        The pandoc document
 
     Returns
     -------
-        The modified element
+        The modified element or None
     """
     # Is it in the right format and is it Div or a CodeBlock?
-    if doc.format in ["beamer"] and elem.tag in ["Span"]:
+    if doc.format in ("beamer") and elem.tag in ("Span"):
         # Is there a latex-admonition-color attribute?
         if "beamer-arrow-node" in elem.classes:
             text = convert_text(
@@ -269,11 +270,21 @@ def tikz(elem, doc):
                 f"\\end{{tikzpicture}}",
                 format="tex",
             )
+    return None
 
 
 def get_range(elem, _):
     """
     Get the range of display for an element.
+
+    Arguments
+    ---------
+    elem
+        A pandoc element.
+
+    Returns
+    -------
+        A range represented by a couple.
     """
     from_value = elem.attributes.get("from", "")
     if bool(from_value):
@@ -295,7 +306,7 @@ def get_range(elem, _):
     else:
         to_value = ""
 
-    try:
+    with contextlib.suppress(TypeError):
         if to_value < from_value:
             debug(
                 f"pandoc-beamer-arrow: from value '{from_value}' and "
@@ -303,8 +314,6 @@ def get_range(elem, _):
             )
             from_value = ""
             to_value = ""
-    except TypeError:
-        pass
 
     return (from_value, to_value)
 
@@ -312,6 +321,17 @@ def get_range(elem, _):
 def get_color(elem, doc):
     """
     Get the color of display for an element.
+
+    Arguments
+    ---------
+    elem
+        A pandoc element
+    doc
+        The pandoc document.
+
+    Returns
+    -------
+        The color.
     """
     if "color" in elem.attributes:
         color = elem.attributes["color"]
@@ -323,24 +343,24 @@ def get_color(elem, doc):
 
 def prepare(doc):
     """
-    Prepare the document
+    Prepare the document.
 
     Arguments
     ---------
-        doc:
-            The pandoc document
+    doc
+        The pandoc document
     """
     doc.x11colors = x11colors()
 
 
 def finalize(doc):
     """
-    Finalize the pandoc document
+    Finalize the pandoc document.
 
     Arguments
     ---------
-        doc:
-            The pandoc document
+    doc
+        The pandoc document
     """
     # Add header-includes if necessary
     if "header-includes" not in doc.metadata:
@@ -349,7 +369,7 @@ def finalize(doc):
     elif not isinstance(doc.metadata["header-includes"], MetaList):
         doc.metadata["header-includes"] = MetaList(doc.metadata["header-includes"])
 
-    # Add usefull LaTexPackage
+    # Add useful LaTexPackage
     doc.metadata["header-includes"].append(
         MetaInlines(RawInline("\\usepackage{tikz}", "tex"))
     )
@@ -369,9 +389,10 @@ def finalize(doc):
     )
 
     # Define x11 colors
-    tex = []
-    for name, color in doc.x11colors.items():
-        tex.append("\\definecolor{" + name.lower() + "}{HTML}{" + color + "}")
+    tex = [
+        f"\\definecolor{{{name.lower()}}}{{HTML}}{{{color}}}"
+        for name, color in doc.x11colors.items()
+    ]
     doc.metadata["header-includes"].append(
         MetaInlines(RawInline("\n".join(tex), "tex"))
     )
@@ -379,12 +400,12 @@ def finalize(doc):
 
 def main(doc=None):
     """
-    Main function called by the script.
+    Convert the document.
 
     Arguments
     ---------
-        doc:
-            The pandoc document
+    doc
+        The pandoc document
 
     Returns
     -------
