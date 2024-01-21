@@ -4,7 +4,7 @@
 
 import contextlib
 
-from panflute import (  # type: ignore
+from panflute import (
     MetaInlines,
     MetaList,
     Plain,
