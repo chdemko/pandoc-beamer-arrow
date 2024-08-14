@@ -1,5 +1,3 @@
-# This Python file uses the following encoding: utf-8
-
 import io
 from contextlib import redirect_stderr
 from unittest import TestCase
