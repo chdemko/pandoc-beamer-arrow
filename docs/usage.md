@@ -3,8 +3,8 @@ Usage
 
 To apply the filter, use the following option with pandoc:
 
-~~~shell
-$ pandoc --filter pandoc-beamer-arrow
+~~~{prompt} bash
+pandoc --filter pandoc-beamer-arrow
 ~~~
 
 Explanation
