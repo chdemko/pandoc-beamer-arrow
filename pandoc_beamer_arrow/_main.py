@@ -1,10 +1,13 @@
 #!/usr/bin/env python
 
 """Pandoc filter for adding admonition in LaTeX."""
+from __future__ import annotations
 
 import contextlib
 
 from panflute import (
+    Doc,
+    Element,
     MetaInlines,
     MetaList,
     Plain,
@@ -15,12 +18,13 @@ from panflute import (
 )
 
 
-def x11colors():  # noqa: CFQ001
+def x11colors() -> dict[str, str]:  # noqa: CFQ001
     """
     Get the x11 colors.
 
     Returns
     -------
+    dict[str, str]
         The x11 colors
     """
     # See https://www.w3.org/TR/css-color-3/#svg-color
@@ -176,7 +180,7 @@ def x11colors():  # noqa: CFQ001
 
 
 # pylint: disable=inconsistent-return-statements,too-many-branches,too-many-statements
-def tikz(elem, doc):
+def tikz(elem: Element, doc: Doc) -> RawInline | None:
     """
     Add admonition to elem.
 
@@ -189,6 +193,7 @@ def tikz(elem, doc):
 
     Returns
     -------
+    RawInline | None
         The modified element or None
     """
     # Is it in the right format and is it Div or a CodeBlock?
@@ -273,7 +278,7 @@ def tikz(elem, doc):
     return None
 
 
-def get_range(elem, _):
+def get_range(elem: Element, _) -> tuple[str, str]:
     """
     Get the range of display for an element.
 
@@ -284,6 +289,7 @@ def get_range(elem, _):
 
     Returns
     -------
+    tuple[str, str]
         A range represented by a couple.
     """
     from_value = elem.attributes.get("from", "")
@@ -318,7 +324,7 @@ def get_range(elem, _):
     return (from_value, to_value)
 
 
-def get_color(elem, doc):
+def get_color(elem: Element, doc: Doc) -> str:
     """
     Get the color of display for an element.
 
@@ -331,17 +337,18 @@ def get_color(elem, doc):
 
     Returns
     -------
+    str
         The color.
     """
     if "color" in elem.attributes:
         color = elem.attributes["color"]
         if color in doc.x11colors:
-            return color
+            return color  # type: ignore
         debug(f"pandoc-beamer-arrow: color '{color}' is not correct")
     return ""
 
 
-def prepare(doc):
+def prepare(doc: Doc) -> None:
     """
     Prepare the document.
 
@@ -353,7 +360,7 @@ def prepare(doc):
     doc.x11colors = x11colors()
 
 
-def finalize(doc):
+def finalize(doc: Doc) -> None:
     """
     Finalize the pandoc document.
 
@@ -398,7 +405,7 @@ def finalize(doc):
     )
 
 
-def main(doc=None):
+def main(doc: Doc | None = None) -> Doc:
     """
     Convert the document.
 
@@ -409,6 +416,7 @@ def main(doc=None):
 
     Returns
     -------
+    Doc
         The modified pandoc document
     """
     return run_filter(tikz, prepare=prepare, finalize=finalize, doc=doc)
