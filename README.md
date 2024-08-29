@@ -38,14 +38,14 @@ pre-installed on linux and Mac OS X, and which is easily installed
 
 Install *pandoc-beamer-arrow* using the bash command
 
-~~~{prompt} bash
-pipx install pandoc-beamer-arrow
+~~~shell-session
+$ pipx install pandoc-beamer-arrow
 ~~~
 
 To upgrade to the most recent release, use
 
-~~~{prompt} bash
-pipx upgrade pandoc-beamer-arrow
+~~~shell-session
+$ pipx upgrade pandoc-beamer-arrow
 ~~~
 
 `pipx` is a script to install and run python applications in isolated
@@ -60,8 +60,8 @@ LaTeX packages. On linux you have to install some extra libraries **before**
 *pandoc-beamer-arrow*. On a Debian-based system (including Ubuntu), you can
 install it as root using
 
-~~~{prompt} bash
-sudo apt-get texlive-latex-extra
+~~~shell-session
+$ sudo apt-get texlive-latex-extra
 ~~~
 
 [python]: https://www.python.org
